@@ -2,6 +2,35 @@
 
 Complete wave monitoring solution for Garmin devices with automated data scraping.
 
+## To Do:
+### Recommended Repo Structure:
+mauao-wave-data/
+├── .github/
+│   └── workflows/
+│       └── scrape.yml                 # GitHub Actions workflow
+├── scraper/
+│   └── portScrape.py                  # Your Python scraper
+├── garmin-app/
+│   ├── manifest.xml                   # Connect IQ manifest
+│   ├── source/
+│   │   ├── MauaoWaveApp.mc           # Main app file
+│   │   ├── MauaoWaveView.mc          # View class
+│   │   └── MauaoWaveDelegate.mc      # Input delegate
+│   ├── resources/
+│   │   ├── drawables/                # Icons, images
+│   │   ├── fonts/                    # Custom fonts
+│   │   ├── layouts/                  # Layout files
+│   │   └── strings/                  # String resources
+│   ├── resources-round-218x218/      # Round watch layouts
+│   ├── resources-semi_round-215x180/ # Semi-round layouts
+│   └── resources-rectangle-205x148/  # Rectangle layouts
+├── docs/
+│   ├── README.md                     # Main documentation
+│   └── GARMIN_SETUP.md              # Garmin development setup
+├── wave_data.json                    # Generated data (auto-updated)
+├── index.html                        # Generated web view (auto-updated)
+└── portDataScrape.txt               # Generated raw data (auto-updated)
+
 ## 🌊 System Components
 
 ### 1. Data Scraper (`/scraper/`)

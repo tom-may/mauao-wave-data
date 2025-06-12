@@ -7,6 +7,11 @@ on:
   push:
     branches: [ main ]  # Run on push for testing
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   scrape:
     runs-on: ubuntu-latest

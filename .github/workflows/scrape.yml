@@ -37,7 +37,7 @@ jobs:
         pip install easyocr
         
     - name: Run scraper
-      run: python portScrape.py
+      run: python scraper/portScrape.py
       
     - name: Setup Pages
       uses: actions/configure-pages@v4

@@ -41,7 +41,6 @@ import requests
 from bs4 import BeautifulSoup
 from PIL import Image
 from io import BytesIO
-import pytesseract
 import os
 import cv2
 import numpy as np

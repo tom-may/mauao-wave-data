@@ -1,5 +1,3 @@
-Cant currently run anbuild because of dev key. Fix this, run build, push to repo
-
 # Mauao Wave Data System
 
 Complete wave monitoring solution for Garmin devices with automated data scraping.

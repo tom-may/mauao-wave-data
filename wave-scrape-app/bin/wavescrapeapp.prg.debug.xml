@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<debugInfo>
+    <manifest filename="C:\Users\TomMay\Documents\Source\mauao-wave-data\wave-scrape-app\manifest.xml"/>
+    <pcToLineNum>
+        <entry filename="C:\\Users\\TomMay\\Documents\\Source\\mauao-wave-data\\wave-scrape-app\\source\\wave-scrape-appApp.mc" id="1" lineNum="26" parent="globals" pc="268435460" symbol="getApp"/>
+        <entry filename="C:\\Users\\TomMay\\Documents\\Source\\mauao-wave-data\\wave-scrape-app\\source\\wave-scrape-appApp.mc" id="1" lineNum="27" parent="globals" pc="268435470" symbol="getApp"/>
+        <entry filename="c:\\Users\\TomMay\\Documents\\Source\\mauao-wave-data\\wave-scrape-app\\bin\\gen\\006-B4024-00\\source\\Rez.mcgen" id="2" lineNum="7" parent="globals/Rez" pc="268435481" symbol="&lt;init&gt;"/>
+        <entry filename="C:\\Users\\TomMay\\Documents\\Source\\mauao-wave-data\\wave-scrape-app\\source\\wave-scrape-appApp.mc" id="3" lineNum="5" parent="globals/wave_scrape_appApp" pc="268435501" symbol="&lt;init&gt;"/>
+        <entry filename="C:\\Users\\TomMay\\Documents\\Source\\mauao-wave-data\\wave-scrape-app\\source\\wave-scrape-appView.mc" id="4" lineNum="4" parent="globals/wave_scrape_appView" pc="268435513" symbol="&lt;init&gt;"/>
+        <entry filename="C:\\Users\\TomMay\\Documents\\Source\\mauao-wave-data\\wave-scrape-app\\source\\wave-scrape-appApp.mc" id="5" lineNum="12" parent="globals/wave_scrape_appApp" pc="268435525" symbol="onStart"/>
+        <entry filename="C:\\Users\\TomMay\\Documents\\Source\\mauao-wave-data\\wave-scrape-app\\source\\wave-scrape-appApp.mc" id="6" lineNum="20" parent="globals/wave_scrape_appApp" pc="268435528" symbol="getInitialView"/>
+        <entry filename="C:\\Users\\TomMay\\Documents\\Source\\mauao-wave-data\\wave-scrape-app\\source\\wave-scrape-appApp.mc" id="6" lineNum="21" parent="globals/wave_scrape_appApp" pc="268435530" symbol="getInitialView"/>
+        <entry filename="C:\\Users\\TomMay\\Documents\\Source\\mauao-wave-data\\wave-scrape-app\\source\\wave-scrape-appApp.mc" id="7" lineNum="7" parent="globals/wave_scrape_appApp" pc="268435560" symbol="initialize"/>
+        <entry filename="C:\\Users\\TomMay\\Documents\\Source\\mauao-wave-data\\wave-scrape-app\\source\\wave-scrape-appApp.mc" id="7" lineNum="8" parent="globals/wave_scrape_appApp" pc="268435562" symbol="initialize"/>
+        <entry filename="C:\\Users\\TomMay\\Documents\\Source\\mauao-wave-data\\wave-scrape-app\\source\\wave-scrape-appApp.mc" id="8" lineNum="16" parent="globals/wave_scrape_appApp" pc="268435575" symbol="onStop"/>
+        <entry filename="C:\\Users\\TomMay\\Documents\\Source\\mauao-wave-data\\wave-scrape-app\\source\\wave-scrape-appView.mc" id="10" lineNum="11" parent="globals/wave_scrape_appView" pc="268435578" symbol="onLayout"/>
+        <entry filename="C:\\Users\\TomMay\\Documents\\Source\\mauao-wave-data\\wave-scrape-app\\source\\wave-scrape-appView.mc" id="10" lineNum="12" parent="globals/wave_scrape_appView" pc="268435580" symbol="onLayout"/>
+        <entry filename="C:\\Users\\TomMay\\Documents\\Source\\mauao-wave-data\\wave-scrape-app\\source\\wave-scrape-appView.mc" id="11" lineNum="6" parent="globals/wave_scrape_appView" pc="268435614" symbol="initialize"/>
+        <entry filename="C:\\Users\\TomMay\\Documents\\Source\\mauao-wave-data\\wave-scrape-app\\source\\wave-scrape-appView.mc" id="11" lineNum="7" parent="globals/wave_scrape_appView" pc="268435616" symbol="initialize"/>
+        <entry filename="C:\\Users\\TomMay\\Documents\\Source\\mauao-wave-data\\wave-scrape-app\\source\\wave-scrape-appView.mc" id="13" lineNum="22" parent="globals/wave_scrape_appView" pc="268435629" symbol="onUpdate"/>
+        <entry filename="C:\\Users\\TomMay\\Documents\\Source\\mauao-wave-data\\wave-scrape-app\\source\\wave-scrape-appView.mc" id="13" lineNum="24" parent="globals/wave_scrape_appView" pc="268435631" symbol="onUpdate"/>
+        <entry filename="c:\\Users\\TomMay\\Documents\\Source\\mauao-wave-data\\wave-scrape-app\\bin\\gen\\006-B4024-00\\source\\Rez.mcgen" id="14" lineNum="14" parent="globals/Rez/Layouts" pc="268435648" symbol="MainLayout"/>
+        <entry filename="c:\\Users\\TomMay\\Documents\\Source\\mauao-wave-data\\wave-scrape-app\\bin\\gen\\006-B4024-00\\source\\Rez.mcgen" id="14" lineNum="15" parent="globals/Rez/Layouts" pc="268435659" symbol="MainLayout"/>
+        <entry filename="c:\\Users\\TomMay\\Documents\\Source\\mauao-wave-data\\wave-scrape-app\\bin\\gen\\006-B4024-00\\source\\Rez.mcgen" id="14" lineNum="16" parent="globals/Rez/Layouts" pc="268435746" symbol="MainLayout"/>
+        <entry filename="c:\\Users\\TomMay\\Documents\\Source\\mauao-wave-data\\wave-scrape-app\\bin\\gen\\006-B4024-00\\source\\Rez.mcgen" id="14" lineNum="18" parent="globals/Rez/Layouts" pc="268435788" symbol="MainLayout"/>
+    </pcToLineNum>
+    <symbolTable>
+        <entry id="8388639" module="true" symbol="Graphics"/>
+        <entry id="8388632" method="true" symbol="&lt;init&gt;"/>
+        <entry id="11" method="true" symbol="MainLayout"/>
+        <entry id="6" object="true" symbol="wave_scrape_appApp"/>
+        <entry field="true" id="8388611" module="true" symbol="Toybox"/>
+        <entry field="true" id="12" symbol="AppName"/>
+        <entry id="5" module="true" symbol="globals/Rez/Strings"/>
+        <entry id="8389345" symbol="rezId"/>
+        <entry id="8388648" module="true" symbol="WatchUi"/>
+        <entry id="2" module="true" symbol="globals/Rez"/>
+        <entry field="true" id="10" symbol="id_monkey"/>
+        <entry id="8389124" method="true" symbol="onUpdate"/>
+        <entry field="true" id="8389065" symbol="locY"/>
+        <entry field="true" id="8389064" symbol="locX"/>
+        <entry id="8388771" module="true" object="true" symbol="Drawables"/>
+        <entry id="8389275" method="true" symbol="getApp"/>
+        <entry id="4" module="true" symbol="globals/Rez/Layouts"/>
+        <entry id="8389122" method="true" symbol="onLayout"/>
+        <entry field="true" id="8389063" symbol="identifier"/>
+        <entry id="3" module="true" symbol="globals/Rez/Drawables"/>
+        <entry id="8388769" module="true" object="true" symbol="Rez"/>
+        <entry id="8388640" module="true" symbol="Lang"/>
+        <entry id="7" object="true" symbol="wave_scrape_appView"/>
+        <entry field="true" id="9" symbol="LauncherIcon"/>
+        <entry id="8388610" symbol="statics"/>
+        <entry id="8389123" method="true" symbol="onShow"/>
+        <entry id="8389350" module="true" symbol="globals"/>
+        <entry id="8388770" module="true" object="true" symbol="Strings"/>
+        <entry id="8388702" method="true" symbol="initialize"/>
+        <entry id="8389279" method="true" symbol="onStart"/>
+        <entry id="8389280" method="true" symbol="getInitialView"/>
+        <entry id="8389281" method="true" symbol="onStop"/>
+        <entry id="8" module="true" symbol="Layouts"/>
+        <entry id="8389125" method="true" symbol="onHide"/>
+        <entry id="8388635" module="true" symbol="Application"/>
+    </symbolTable>
+    <localVars>
+        <entry arg="true" endPc="268435613" name="dc" stackId="1" startPc="268435578"/>
+        <entry arg="true" endPc="268435647" name="dc" stackId="1" startPc="268435629"/>
+        <entry arg="true" endPc="268435797" name="dc" stackId="1" startPc="268435648"/>
+        <entry endPc="268435797" name="rez_cmp_local_bitmap_id_monkey" stackId="2" startPc="268435659"/>
+    </localVars>
+    <deviceInfo deviceVersion="0ed082a335bbf00c12e5da810e92d4f89288090c" partNumber="006-B4024-00"/>
+    <annotations>
+        <annotationEntry annotation="initialized" class="Drawables" module="globals/Rez" symbol="LauncherIcon"/>
+        <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="AppName"/>
+        <annotationEntry annotation="initialized" class="Drawables" module="globals/Rez" symbol="id_monkey"/>
+    </annotations>
+    <dataEntryOffsetMappings>
+        <dataEntry label="globals" offset="58" parentId="" symbolId="globals" type="module"/>
+        <dataEntry label="globals/Rez" offset="125" parentId="globals" symbolId="Rez" type="module"/>
+        <dataEntry label="globals/wave_scrape_appApp" offset="178" parentId="globals" symbolId="wave_scrape_appApp" type="class"/>
+        <dataEntry label="globals/wave_scrape_appView" offset="249" parentId="globals" symbolId="wave_scrape_appView" type="class"/>
+        <dataEntry label="globals/Rez/Drawables" offset="329" parentId="Rez" symbolId="Drawables" type="module"/>
+        <dataEntry label="globals/Rez/Layouts" offset="373" parentId="Rez" symbolId="Layouts" type="module"/>
+        <dataEntry label="globals/Rez/Strings" offset="408" parentId="Rez" symbolId="Strings" type="module"/>
+    </dataEntryOffsetMappings>
+    <functions>
+        <functionEntry accessMode="public" endPc="268435480" name="getApp" startPc="268435460">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435500" name="&lt;init&gt;" parent="Rez" startPc="268435481">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435512" name="&lt;init&gt;" parent="wave_scrape_appApp" startPc="268435501">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435524" name="&lt;init&gt;" parent="wave_scrape_appView" startPc="268435513">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" name="&lt;init&gt;" parent="Drawables">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" name="&lt;init&gt;" parent="Layouts">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" name="&lt;init&gt;" parent="Strings">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435527" name="onStart" parent="wave_scrape_appApp" startPc="268435525">
+            <param id="state"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435559" name="getInitialView" parent="wave_scrape_appApp" startPc="268435528">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435574" name="initialize" parent="wave_scrape_appApp" startPc="268435560">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435577" name="onStop" parent="wave_scrape_appApp" startPc="268435575">
+            <param id="state"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" name="onShow" parent="wave_scrape_appView">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435613" name="onLayout" parent="wave_scrape_appView" startPc="268435578">
+            <param id="dc"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435628" name="initialize" parent="wave_scrape_appView" startPc="268435614">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" name="onHide" parent="wave_scrape_appView">
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435647" name="onUpdate" parent="wave_scrape_appView" startPc="268435629">
+            <param id="dc"/>
+            <documentation/>
+        </functionEntry>
+        <functionEntry accessMode="public" endPc="268435797" name="MainLayout" parent="Layouts" startPc="268435648">
+            <param id="dc"/>
+            <documentation/>
+        </functionEntry>
+    </functions>
+</debugInfo>

@@ -1,3 +1,7 @@
+To run open git bash
+navigate to ~/Documents/Source/mauao-wave-data/wave-scrape-app
+hit ctrl-f5
+
 # Mauao Wave Data System
 
 Complete wave monitoring solution for Garmin devices with automated data scraping.

@@ -56,6 +56,12 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        [ -f wave-scrape-app ] && git add .
+        
+        # Add the actual files created by the script
+        [ -f wave-scrape-app/data/wave_data.json ] && git add wave_data.json
+        [ -f wave-scrape-app/data/index.html ] && git add index.html
+        [ -f wave-scrape-app/data/portDataScrape.txt ] && git add portDataScrape.txt
+        
+        # Only commit if there are changes
         git diff --staged --quiet || git commit -m "Update wave data - $(date)"
         git push

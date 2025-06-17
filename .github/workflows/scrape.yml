@@ -50,3 +50,11 @@ jobs:
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4
+
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add wave_data.json index.html portDataScrape.txt
+        git diff --staged --quiet || git commit -m "Update wave data - $(date)"
+        git push

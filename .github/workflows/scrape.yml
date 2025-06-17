@@ -2,7 +2,7 @@ name: Scrape Wave Data
 
 on:
   schedule:
-    - cron: '*/30 5-21 * * *'  # Every 30 minutes from 5 AM to 9 PM NZDT
+     - cron: '*/30 17-9 * * *'  # Roughly 5 AM - 9 PM NZ time
   workflow_dispatch:  # Allow manual trigger
   push:
     branches: [ main ]  # Run on push for testing

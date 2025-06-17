@@ -14,6 +14,10 @@ from datetime import datetime
 # Set default encoding to utf-8
 sys.stdout.reconfigure(encoding='utf-8')
 
+# Define output directory
+OUTPUT_DIR = 'wave-scrape-app/data'
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
 def parse_wave_conditions(conditions_list):
     """Parse conditions list into structured data with validation"""
     
@@ -104,8 +108,9 @@ def is_data_complete(parsed_conditions):
 def load_existing_data():
     """Load existing JSON data if it exists"""
     try:
-        if os.path.exists('wave_data.json'):
-            with open('wave_data.json', 'r', encoding='utf-8') as f:
+        json_path = os.path.join(OUTPUT_DIR, 'wave_data.json')
+        if os.path.exists(json_path):
+            with open(json_path, 'r', encoding='utf-8') as f:
                 return json.load(f)
     except:
         pass
@@ -227,7 +232,8 @@ if img_tag:
             }
             
             # Always save the JSON
-            with open('wave_data.json', 'w', encoding='utf-8') as json_file:
+            json_path = os.path.join(OUTPUT_DIR, 'wave_data.json')
+            with open(json_path, 'w', encoding='utf-8') as json_file:
                 json.dump(wave_data, json_file, indent=2)
                 
             if is_data_complete(structured_conditions):
@@ -240,12 +246,14 @@ if img_tag:
                 print(f"Missing fields: {', '.join(missing_fields)}")
             
             # Always save the raw text file for debugging
-            with open('portDataScrape.txt', 'w', encoding='utf-8') as output_file:
+            txt_path = os.path.join(OUTPUT_DIR, 'portDataScrape.txt')
+            with open(txt_path, 'w', encoding='utf-8') as output_file:
                 output_file.write(formatted_output)
-                print("Extracted text saved to 'portDataScrape.txt'")
+                print(f"Extracted text saved to '{txt_path}'")
                 
             # Always create HTML file
-            with open('index.html', 'w', encoding='utf-8') as html_file:
+            html_path = os.path.join(OUTPUT_DIR, 'index.html')
+            with open(html_path, 'w', encoding='utf-8') as html_file:
                 status_display = "✅ Data Complete" if is_data_complete(structured_conditions) else "⚠️ Data Incomplete (with nulls)"
                 html_file.write(f"""
 <!DOCTYPE html>
@@ -298,7 +306,8 @@ if img_tag:
                 }
             }
             
-            with open('wave_data.json', 'w', encoding='utf-8') as json_file:
+            json_path = os.path.join(OUTPUT_DIR, 'wave_data.json')
+            with open(json_path, 'w', encoding='utf-8') as json_file:
                 json.dump(error_data, json_file, indent=2)
                 
             print("💥 Error JSON created with null values")
@@ -338,7 +347,8 @@ if img_tag:
             }
         }
         
-        with open('wave_data.json', 'w', encoding='utf-8') as json_file:
+        json_path = os.path.join(OUTPUT_DIR, 'wave_data.json')
+        with open(json_path, 'w', encoding='utf-8') as json_file:
             json.dump(error_data, json_file, indent=2)
 else:
     print("No image found with id 'harbour'")
@@ -372,5 +382,6 @@ else:
         }
     }
     
-    with open('wave_data.json', 'w', encoding='utf-8') as json_file:
+    json_path = os.path.join(OUTPUT_DIR, 'wave_data.json')
+    with open(json_path, 'w', encoding='utf-8') as json_file:
         json.dump(error_data, json_file, indent=2)

@@ -1,3 +1,14 @@
+To run open git bash
+navigate to ~/Documents/Source/mauao-wave-data/wave-scrape-app
+hit ctrl-f5
+
+Simulator currently shows mocked data from wave-scrape-appView.mc 
+This file will need to be updated to get data from wave-scrape-app/dta/wave_data.json
+
+Then once we have this data we can work on formatting / UI
+
+Then how do we get it on my watch?
+
 # Mauao Wave Data System
 
 Complete wave monitoring solution for Garmin devices with automated data scraping.

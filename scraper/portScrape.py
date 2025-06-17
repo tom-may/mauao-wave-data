@@ -14,6 +14,10 @@ from datetime import datetime
 # Set default encoding to utf-8
 sys.stdout.reconfigure(encoding='utf-8')
 
+# Define output directory
+OUTPUT_DIR = 'wave-scrape-app/data'
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
 def parse_wave_conditions(conditions_list):
     """Parse conditions list into structured data with validation"""
     
@@ -104,8 +108,9 @@ def is_data_complete(parsed_conditions):
 def load_existing_data():
     """Load existing JSON data if it exists"""
     try:
-        if os.path.exists('wave_data.json'):
-            with open('wave_data.json', 'r', encoding='utf-8') as f:
+        json_path = os.path.join(OUTPUT_DIR, 'wave_data.json')
+        if os.path.exists(json_path):
+            with open(json_path, 'r', encoding='utf-8') as f:
                 return json.load(f)
     except:
         pass
@@ -204,62 +209,52 @@ if img_tag:
             # Parse conditions with validation
             structured_conditions = parse_wave_conditions(conditions_list)
             
-            # Check if data is complete enough to update
-            if is_data_complete(structured_conditions):
-                
-                # Data is good - create new JSON
-                wave_data = {
-                    "timestamp": datetime.utcnow().isoformat() + "Z",
-                    "location": "Mauao Wave Buoy",
-                    "last_updated": datetime.utcnow().strftime("%d/%m/%Y %H:%M UTC"),
-                    "status": "success",
-                    "data_quality": "complete",
-                    "scrape_attempt": datetime.utcnow().isoformat() + "Z",
-                    "raw_data": formatted_output,
-                    "parsed_data": {
-                        "title": lines[0] if len(lines) > 0 else "",
-                        "location": lines[1] if len(lines) > 1 else "",
-                        "time_label": lines[2] if len(lines) > 2 else "",
-                        "conditions": structured_conditions,
-                        "raw_conditions": conditions_list
-                    }
+            # Always create JSON - determine data quality
+            data_quality = "complete" if is_data_complete(structured_conditions) else "incomplete"
+            status = "success" if is_data_complete(structured_conditions) else "partial_data"
+            
+            # Create new JSON with current data (complete or incomplete)
+            wave_data = {
+                "timestamp": datetime.utcnow().isoformat() + "Z",
+                "location": "Mauao Wave Buoy",
+                "last_updated": datetime.utcnow().strftime("%d/%m/%Y %H:%M UTC"),
+                "status": status,
+                "data_quality": data_quality,
+                "scrape_attempt": datetime.utcnow().isoformat() + "Z",
+                "raw_data": formatted_output,
+                "parsed_data": {
+                    "title": lines[0] if len(lines) > 0 else "",
+                    "location": lines[1] if len(lines) > 1 else "",
+                    "time_label": lines[2] if len(lines) > 2 else "",
+                    "conditions": structured_conditions,
+                    "raw_conditions": conditions_list
                 }
+            }
+            
+            # Always save the JSON
+            json_path = os.path.join(OUTPUT_DIR, 'wave_data.json')
+            with open(json_path, 'w', encoding='utf-8') as json_file:
+                json.dump(wave_data, json_file, indent=2)
                 
-                # Save the new complete data
-                with open('wave_data.json', 'w', encoding='utf-8') as json_file:
-                    json.dump(wave_data, json_file, indent=2)
-                    
+            if is_data_complete(structured_conditions):
                 print("✅ Complete data found - JSON updated successfully")
                 print(f"Wave height: {structured_conditions['max_wave_height']}m")
                 print(f"Wind: {structured_conditions['wind_speed']} knots {structured_conditions['wind_direction']}")
-                
             else:
-                # Data is incomplete - preserve existing JSON
-                existing_data = load_existing_data()
-                
-                if existing_data:
-                    # Update the scrape attempt timestamp but keep existing data
-                    existing_data["last_scrape_attempt"] = datetime.utcnow().isoformat() + "Z"
-                    existing_data["last_scrape_status"] = "incomplete_data_skipped"
-                    
-                    with open('wave_data.json', 'w', encoding='utf-8') as json_file:
-                        json.dump(existing_data, json_file, indent=2)
-                        
-                    print("⚠️  Incomplete data detected - keeping previous good data")
-                    print(f"Missing critical fields - skipping this update")
-                    print(f"Last good data from: {existing_data.get('last_updated', 'unknown')}")
-                else:
-                    # No existing data and current data is incomplete
-                    print("❌ No existing data and current scrape incomplete - no JSON created")
+                print("⚠️ Incomplete data - JSON created with null values for missing fields")
+                missing_fields = [k for k, v in structured_conditions.items() if v is None]
+                print(f"Missing fields: {', '.join(missing_fields)}")
             
             # Always save the raw text file for debugging
-            with open('portDataScrape.txt', 'w', encoding='utf-8') as output_file:
+            txt_path = os.path.join(OUTPUT_DIR, 'portDataScrape.txt')
+            with open(txt_path, 'w', encoding='utf-8') as output_file:
                 output_file.write(formatted_output)
-                print("Extracted text saved to 'portDataScrape.txt'")
+                print(f"Extracted text saved to '{txt_path}'")
                 
             # Always create HTML file
-            with open('index.html', 'w', encoding='utf-8') as html_file:
-                status = "✅ Data Complete" if is_data_complete(structured_conditions) else "⚠️ Data Incomplete - Using Previous"
+            html_path = os.path.join(OUTPUT_DIR, 'index.html')
+            with open(html_path, 'w', encoding='utf-8') as html_file:
+                status_display = "✅ Data Complete" if is_data_complete(structured_conditions) else "⚠️ Data Incomplete (with nulls)"
                 html_file.write(f"""
 <!DOCTYPE html>
 <html>
@@ -269,7 +264,7 @@ if img_tag:
 </head>
 <body>
     <h1>Mauao Wave Buoy Data</h1>
-    <p><strong>Status:</strong> {status}</p>
+    <p><strong>Status:</strong> {status_display}</p>
     <p><strong>Last scrape attempt:</strong> {datetime.utcnow().strftime("%d/%m/%Y %H:%M UTC")}</p>
     <h2>Raw Extracted Data:</h2>
     <pre>{formatted_output}</pre>
@@ -280,43 +275,113 @@ if img_tag:
 
         except (OSError, IOError) as e:
             print(f"Error processing image: {e}")
-            print("Image may be corrupted or incomplete. Skipping this run.")
+            print("Image may be corrupted or incomplete. Creating error JSON.")
             
-            # Load existing data and mark the failure
-            existing_data = load_existing_data()
-            if existing_data:
-                existing_data["last_scrape_attempt"] = datetime.utcnow().isoformat() + "Z"
-                existing_data["last_scrape_status"] = f"image_error: {str(e)}"
+            # Create error JSON instead of preserving old data
+            error_data = {
+                "timestamp": datetime.utcnow().isoformat() + "Z",
+                "location": "Mauao Wave Buoy",
+                "last_updated": datetime.utcnow().strftime("%d/%m/%Y %H:%M UTC"),
+                "status": "error",
+                "data_quality": "error",
+                "scrape_attempt": datetime.utcnow().isoformat() + "Z",
+                "error_message": f"Image processing error: {str(e)}",
+                "raw_data": None,
+                "parsed_data": {
+                    "title": None,
+                    "location": "Mauao Wave Buoy",
+                    "time_label": None,
+                    "conditions": {
+                        "max_wave_height": None,
+                        "sig_wave_height": None,
+                        "wave_period": None,
+                        "tide": None,
+                        "wind_speed": None,
+                        "wind_gust": None,
+                        "wind_direction": None,
+                        "water_temp": None,
+                        "air_temp": None
+                    },
+                    "raw_conditions": []
+                }
+            }
+            
+            json_path = os.path.join(OUTPUT_DIR, 'wave_data.json')
+            with open(json_path, 'w', encoding='utf-8') as json_file:
+                json.dump(error_data, json_file, indent=2)
                 
-                with open('wave_data.json', 'w', encoding='utf-8') as json_file:
-                    json.dump(existing_data, json_file, indent=2)
-                    
-                print("🔄 Image processing failed - preserving last good data")
-            else:
-                print("💥 No fallback data available")
-                
+            print("💥 Error JSON created with null values")
+            
             # Exit gracefully without failing the workflow
             sys.exit(0)
 
     else:
         print("The URL does not point to an image.")
         
-        # Handle non-image response
-        existing_data = load_existing_data()
-        if existing_data:
-            existing_data["last_scrape_attempt"] = datetime.utcnow().isoformat() + "Z"
-            existing_data["last_scrape_status"] = "non_image_response"
-            
-            with open('wave_data.json', 'w', encoding='utf-8') as json_file:
-                json.dump(existing_data, json_file, indent=2)
+        # Create error JSON for non-image response
+        error_data = {
+            "timestamp": datetime.utcnow().isoformat() + "Z",
+            "location": "Mauao Wave Buoy",
+            "last_updated": datetime.utcnow().strftime("%d/%m/%Y %H:%M UTC"),
+            "status": "error",
+            "data_quality": "error",
+            "scrape_attempt": datetime.utcnow().isoformat() + "Z",
+            "error_message": "Non-image response received",
+            "raw_data": None,
+            "parsed_data": {
+                "title": None,
+                "location": "Mauao Wave Buoy", 
+                "time_label": None,
+                "conditions": {
+                    "max_wave_height": None,
+                    "sig_wave_height": None,
+                    "wave_period": None,
+                    "tide": None,
+                    "wind_speed": None,
+                    "wind_gust": None,
+                    "wind_direction": None,
+                    "water_temp": None,
+                    "air_temp": None
+                },
+                "raw_conditions": []
+            }
+        }
+        
+        json_path = os.path.join(OUTPUT_DIR, 'wave_data.json')
+        with open(json_path, 'w', encoding='utf-8') as json_file:
+            json.dump(error_data, json_file, indent=2)
 else:
     print("No image found with id 'harbour'")
     
-    # Handle missing image tag
-    existing_data = load_existing_data()
-    if existing_data:
-        existing_data["last_scrape_attempt"] = datetime.utcnow().isoformat() + "Z"
-        existing_data["last_scrape_status"] = "image_tag_not_found"
-        
-        with open('wave_data.json', 'w', encoding='utf-8') as json_file:
-            json.dump(existing_data, json_file, indent=2)
+    # Create error JSON for missing image tag
+    error_data = {
+        "timestamp": datetime.utcnow().isoformat() + "Z",
+        "location": "Mauao Wave Buoy",
+        "last_updated": datetime.utcnow().strftime("%d/%m/%Y %H:%M UTC"),
+        "status": "error",
+        "data_quality": "error", 
+        "scrape_attempt": datetime.utcnow().isoformat() + "Z",
+        "error_message": "Image tag not found",
+        "raw_data": None,
+        "parsed_data": {
+            "title": None,
+            "location": "Mauao Wave Buoy",
+            "time_label": None,
+            "conditions": {
+                "max_wave_height": None,
+                "sig_wave_height": None,
+                "wave_period": None,
+                "tide": None,
+                "wind_speed": None,
+                "wind_gust": None,
+                "wind_direction": None,
+                "water_temp": None,
+                "air_temp": None
+            },
+            "raw_conditions": []
+        }
+    }
+    
+    json_path = os.path.join(OUTPUT_DIR, 'wave_data.json')
+    with open(json_path, 'w', encoding='utf-8') as json_file:
+        json.dump(error_data, json_file, indent=2)

@@ -1,22 +1,22 @@
 Title,
 Mauao Wave Buoy,
 Time,
-22/06/2025 20.48 ST
+23/06/2025 05.05 ST
 Max wave height:
-0.8 m
+0.6 m
 Sig: wave height:
 0.5 m
 period:
-9.4$
+9.0$
 Tide:
-0.53 m
+1.86 m
 Wind:
-11knts
+5 knts
 Gust:
-13 knts
+7 knts
 Direction:
-276 W
+249 WSW
 Water Temp:
-15.5 "C
+16.2 "
 Air Temp:
-10.6 '
+14.7 '€

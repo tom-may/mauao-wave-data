@@ -1,11 +1,11 @@
 {
-  "timestamp": "2025-06-22T07:23:16.104276Z",
+  "timestamp": "2025-06-22T07:43:13.189160Z",
   "location": "Mauao Wave Buoy",
-  "last_updated": "22/06/2025 07:23 UTC",
+  "last_updated": "22/06/2025 07:43 UTC",
   "status": "error",
   "data_quality": "error",
-  "scrape_attempt": "2025-06-22T07:23:16.104326Z",
-  "error_message": "Image download failed: ('Connection broken: IncompleteRead(155648 bytes read, 20964 more expected)', IncompleteRead(155648 bytes read, 20964 more expected))",
+  "scrape_attempt": "2025-06-22T07:43:13.189190Z",
+  "error_message": "Image processing error: image file is truncated (41 bytes not processed)",
   "raw_data": null,
   "parsed_data": {
     "title": null,

@@ -1,16 +1,15 @@
 {
-  "timestamp": "2025-06-23T02:07:13.174748Z",
+  "timestamp": "2025-06-23T03:44:06.145418Z",
   "location": "Mauao Wave Buoy",
-  "last_updated": "23/06/2025 02:07 UTC",
-  "status": "error",
-  "data_quality": "error",
-  "scrape_attempt": "2025-06-23T02:07:13.174774Z",
-  "error_message": "Image processing error: image file is truncated (10 bytes not processed)",
-  "raw_data": null,
+  "last_updated": "23/06/2025 03:44 UTC",
+  "status": "partial_data",
+  "data_quality": "incomplete",
+  "scrape_attempt": "2025-06-23T03:44:06.145444Z",
+  "raw_data": "Title,\nMauao Wave Buoy,\nTime,\n23/06/2025 15.40 ST\nMax wave height:\n0.5 m\nSig: wave height:\n0.3m\nperiod:\n8.4$\nTide:\n1.83 m\nWind:\n7 knts\nGust:\n9 knts\nDirection:\n319 NW\nWater Temp:\n16.3 'C\nAir Temp:\n17.7 '\u20ac",
   "parsed_data": {
-    "title": null,
-    "location": "Mauao Wave Buoy",
-    "time_label": null,
+    "title": "Title,",
+    "location": "Mauao Wave Buoy,",
+    "time_label": "Time,",
     "conditions": {
       "max_wave_height": null,
       "sig_wave_height": null,
@@ -18,10 +17,30 @@
       "tide": null,
       "wind_speed": null,
       "wind_gust": null,
-      "wind_direction": null,
+      "wind_direction": "E",
       "water_temp": null,
       "air_temp": null
     },
-    "raw_conditions": []
+    "raw_conditions": [
+      "23/06/2025 15.40 ST",
+      "Max wave height:",
+      "0.5 m",
+      "Sig: wave height:",
+      "0.3m",
+      "period:",
+      "8.4$",
+      "Tide:",
+      "1.83 m",
+      "Wind:",
+      "7 knts",
+      "Gust:",
+      "9 knts",
+      "Direction:",
+      "319 NW",
+      "Water Temp:",
+      "16.3 'C",
+      "Air Temp:",
+      "17.7 '\u20ac"
+    ]
   }
 }

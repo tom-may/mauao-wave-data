@@ -1,11 +1,11 @@
 {
-  "timestamp": "2025-06-27T17:41:03.936376Z",
+  "timestamp": "2025-06-27T18:18:18.811017Z",
   "location": "Mauao Wave Buoy",
-  "last_updated": "27/06/2025 17:41 UTC",
+  "last_updated": "27/06/2025 18:18 UTC",
   "status": "error",
   "data_quality": "error",
-  "scrape_attempt": "2025-06-27T17:41:03.936416Z",
-  "error_message": "Webpage fetch failed: HTTPSConnectionPool(host='www.port-tauranga.co.nz', port=443): Read timed out. (read timeout=30)",
+  "scrape_attempt": "2025-06-27T18:18:18.811045Z",
+  "error_message": "Image processing error: image file is truncated (6 bytes not processed)",
   "raw_data": null,
   "parsed_data": {
     "title": null,

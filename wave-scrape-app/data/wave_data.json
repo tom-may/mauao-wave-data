@@ -1,11 +1,11 @@
 {
-  "timestamp": "2025-07-02T22:42:18.494084Z",
+  "timestamp": "2025-07-02T23:13:19.199218Z",
   "location": "Mauao Wave Buoy",
-  "last_updated": "02/07/2025 22:42 UTC",
+  "last_updated": "02/07/2025 23:13 UTC",
   "status": "error",
   "data_quality": "error",
-  "scrape_attempt": "2025-07-02T22:42:18.494133Z",
-  "error_message": "Image download failed: ('Connection broken: IncompleteRead(155648 bytes read, 20021 more expected)', IncompleteRead(155648 bytes read, 20021 more expected))",
+  "scrape_attempt": "2025-07-02T23:13:19.199280Z",
+  "error_message": "Image download failed: ('Connection broken: IncompleteRead(155648 bytes read, 19840 more expected)', IncompleteRead(155648 bytes read, 19840 more expected))",
   "raw_data": null,
   "parsed_data": {
     "title": null,

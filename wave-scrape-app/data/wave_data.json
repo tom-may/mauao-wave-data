@@ -1,11 +1,11 @@
 {
-  "timestamp": "2025-07-02T04:05:16.469032Z",
+  "timestamp": "2025-07-02T04:53:39.993517Z",
   "location": "Mauao Wave Buoy",
-  "last_updated": "02/07/2025 04:05 UTC",
+  "last_updated": "02/07/2025 04:53 UTC",
   "status": "partial_data",
   "data_quality": "incomplete",
-  "scrape_attempt": "2025-07-02T04:05:16.469060Z",
-  "raw_data": "Title,\nMauao Wave Buoy,\nTime,\n2/0712025 16.02 ST\nMax wave height:\n24m\nSig: wave height:\n1.6 m\nperiod:\n5.8 $\nTide:\n0.82 m\nWind:\n23 knts\nGust:\n26 knts\nDirection:\n50 NE\nWater Temp:\n16.0 'C\nAir Temp:\n13.9 '",
+  "scrape_attempt": "2025-07-02T04:53:39.993546Z",
+  "raw_data": "Title,\nMauao Wave Buoy,\nTime,\n2/0712025 16.51 ST\nMax wave height:\n2.8 m\nSig: wave height:\n1.5 m\nperiod:\n5.7 $\nTide:\n0.60 m\nWind:\n22 knts\nGust:\n24 knts\nDirection:\n41 NE\nWater Temp:\n15.9 'C\nAir Temp:\n44.4'",
   "parsed_data": {
     "title": "Title,",
     "location": "Mauao Wave Buoy,",
@@ -22,25 +22,25 @@
       "air_temp": null
     },
     "raw_conditions": [
-      "2/0712025 16.02 ST",
+      "2/0712025 16.51 ST",
       "Max wave height:",
-      "24m",
+      "2.8 m",
       "Sig: wave height:",
-      "1.6 m",
+      "1.5 m",
       "period:",
-      "5.8 $",
+      "5.7 $",
       "Tide:",
-      "0.82 m",
+      "0.60 m",
       "Wind:",
-      "23 knts",
+      "22 knts",
       "Gust:",
-      "26 knts",
+      "24 knts",
       "Direction:",
-      "50 NE",
+      "41 NE",
       "Water Temp:",
-      "16.0 'C",
+      "15.9 'C",
       "Air Temp:",
-      "13.9 '"
+      "44.4'"
     ]
   }
 }

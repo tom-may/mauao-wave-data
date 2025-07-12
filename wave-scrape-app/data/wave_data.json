@@ -1,11 +1,11 @@
 {
-  "timestamp": "2025-07-12T23:14:11.980183Z",
+  "timestamp": "2025-07-12T23:41:12.179127Z",
   "location": "Mauao Wave Buoy",
-  "last_updated": "12/07/2025 23:14 UTC",
+  "last_updated": "12/07/2025 23:41 UTC",
   "status": "error",
   "data_quality": "error",
-  "scrape_attempt": "2025-07-12T23:14:11.980210Z",
-  "error_message": "Image processing error: image file is truncated (48 bytes not processed)",
+  "scrape_attempt": "2025-07-12T23:41:12.179154Z",
+  "error_message": "Image processing error: image file is truncated (41 bytes not processed)",
   "raw_data": null,
   "parsed_data": {
     "title": null,

@@ -311,7 +311,33 @@ try:
                     # Parse the data into structured format
                     lines = formatted_output.split('\n')
                     conditions_list = lines[3:] if len(lines) > 3 else []
-                    
+
+                    # Build raw_conditions as a single dictionary
+                    labels = [
+                        "Max wave height:",
+                        "Wind:",
+                        "Sig: wave height:",
+                        "period:",
+                        "Tide:",
+                        "Wind:",
+                        "Direction:",
+                        "Water Temp:",
+                        "Air Temp:"
+                    ]
+                    raw_conditions_dict = {}
+                    i = 0
+                    while i < len(conditions_list):
+                        line = conditions_list[i].strip()
+                        if line in labels:
+                            # Get the next line as value if it exists and is not a label
+                            value = None
+                            if i + 1 < len(conditions_list):
+                                next_line = conditions_list[i + 1].strip()
+                                if next_line not in labels:
+                                    value = next_line
+                            raw_conditions_dict[line] = value
+                        i += 1
+
                     # Parse conditions with validation
                     structured_conditions = parse_wave_conditions(conditions_list)
                     
@@ -333,7 +359,7 @@ try:
                             "location": lines[1] if len(lines) > 1 else "",
                             "time_label": lines[2] if len(lines) > 2 else "",
                             "conditions": structured_conditions,
-                            "raw_conditions": conditions_list
+                            "raw_conditions": [raw_conditions_dict]
                         }
                     }
                     

@@ -48,6 +48,9 @@ jobs:
       with:
         path: '.'
         
+    - name: Pull latest changes
+      run: git pull --rebase origin main
+      
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4

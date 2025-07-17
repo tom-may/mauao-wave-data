@@ -1,3 +1,18 @@
+name: Scrape Wave Data
+
+on:
+  schedule:
+    - cron: '*/30 17-23 * * *'  # 5 AM - 11:30 AM NZ
+    - cron: '*/30 0-8 * * *'    # 12 PM - 8:30 PM NZ
+  workflow_dispatch:  # Allow manual trigger
+  push:
+    branches: [ main ]  # Run on push for testing
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
 jobs:
   scrape:
     runs-on: ubuntu-latest

@@ -1,60 +1,43 @@
-name: Scrape Wave Data
-
-on:
-  schedule:
-    - cron: '*/30 17-23 * * *'  # 5 AM - 11:30 AM NZ
-    - cron: '*/30 0-8 * * *'    # 12 PM - 8:30 PM NZ
-  workflow_dispatch:  # Allow manual trigger
-  push:
-    branches: [ main ]  # Run on push for testing
-
-permissions:
-  contents: write
-  pages: write
-  id-token: write
-
 jobs:
   scrape:
     runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libglib2.0-0 libsm6 libxext6 libxrender-dev libgomp1 libgtk-3-0 libgdk-pixbuf2.0-0
+
+      - name: Install Python dependencies
+        run: |
+          pip install requests beautifulsoup4 pillow opencv-python-headless numpy
+          pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+          pip install easyocr
+
+      - name: Run scraper
+        run: python scraper/portScrape.py
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: scrape
     environment:
       name: github-pages
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-      
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.10'
-        
-    - name: Install system dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y libglib2.0-0 libsm6 libxext6 libxrender-dev libgomp1 libgtk-3-0 libgdk-pixbuf2.0-0
-        
-    - name: Install Python dependencies
-      run: |
-        pip install requests beautifulsoup4 pillow opencv-python-headless numpy
-        pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
-        pip install easyocr
-        
-    - name: Run scraper
-      run: python scraper/portScrape.py
-      
-    - name: Setup Pages
-      uses: actions/configure-pages@v4
-      
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
-      with:
-        path: '.'
-        
-  deploy:
-      runs-on: ubuntu-latest
-      needs: scrape
-      environment:
-        name: github-pages
-      steps:
-        - name: Deploy to GitHub Pages
-          id: deployment
-          uses: actions/deploy-pages@v4
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

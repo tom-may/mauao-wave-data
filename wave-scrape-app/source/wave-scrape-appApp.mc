@@ -8,19 +8,17 @@ class wave_scrape_appApp extends Application.AppBase {
         AppBase.initialize();
     }
 
-    // onStart() is called on application start up
     function onStart(state as Dictionary?) as Void {
     }
 
-    // onStop() is called when your application is exiting
     function onStop(state as Dictionary?) as Void {
     }
 
-    // Return the initial view of your application here
     function getInitialView() as [Views] or [Views, InputDelegates] {
-        return [ new wave_scrape_appView() ];
+        var view = new wave_scrape_appView();
+        var delegate = new wave_scrape_appDelegate(view);
+        return [ view, delegate ];
     }
-
 }
 
 function getApp() as wave_scrape_appApp {

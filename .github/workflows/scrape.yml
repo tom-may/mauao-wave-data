@@ -47,7 +47,12 @@ jobs:
       uses: actions/upload-pages-artifact@v3
       with:
         path: '.'
-        
+
+    - name: Commit local changes
+      run: |
+        git add .
+        git commit -m "Auto-commit before rebase" || echo "No changes to commit"   
+            
     - name: Pull latest changes
       run: git pull --rebase origin main
       

@@ -16,43 +16,52 @@ permissions:
 jobs:
   scrape:
     runs-on: ubuntu-latest
+    
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.10'
+        
+    - name: Install system dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y libglib2.0-0 libsm6 libxext6 libxrender-dev libgomp1 libgtk-3-0 libgdk-pixbuf2.0-0
+        
+    - name: Install Python dependencies
+      run: |
+        pip install requests beautifulsoup4 pillow opencv-python-headless numpy
+        pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+        pip install easyocr
+        
+    - name: Run scraper
+      run: python scraper/portScrape.py
+      
+    - name: Setup Pages
+      uses: actions/configure-pages@v4
+      
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: '.'
+        
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-
-      - name: Install system dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y libglib2.0-0 libsm6 libxext6 libxrender-dev libgomp1 libgtk-3-0 libgdk-pixbuf2.0-0
-
-      - name: Install Python dependencies
-        run: |
-          pip install requests beautifulsoup4 pillow opencv-python-headless numpy
-          pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
-          pip install easyocr
-
-      - name: Run scraper
-        run: python scraper/portScrape.py
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: '.'
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: scrape
-    environment:
-      name: github-pages
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        # Add files from the correct new location
+        [ -f wave-scrape-app/data/wave_data.json ] && git add wave-scrape-app/data/wave_data.json
+        [ -f wave-scrape-app/data/index.html ] && git add wave-scrape-app/data/index.html
+        [ -f wave-scrape-app/data/portDataScrape.txt ] && git add wave-scrape-app/data/portDataScrape.txt
+        
+        # Only commit if there are changes
+        git diff --staged --quiet || git commit -m "Update wave data - $(date)"
+        git push
